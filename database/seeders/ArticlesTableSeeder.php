@@ -4,8 +4,11 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
+use App\Models\Article;
+
 class ArticlesTableSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
      *
@@ -14,22 +17,8 @@ class ArticlesTableSeeder extends Seeder
     public function run()
     {
         //
-        $article = new \App\Models\Article([
-            'title' => 'News article #1 - Title',
-            'body' => 'News article #1 - Body'
-        ]);
-        $article->save();
-
-        $article = new \App\Models\Article([
-            'title' => 'News article #2 - Title',
-            'body' => 'News article #2 - Body'
-        ]);
-        $article->save();
-
-        $article = new \App\Models\Article([
-            'title' => 'News article #3 - Title',
-            'body' => 'News article #3 - Body'
-        ]);
-        $article->save();
+        Article::factory()
+            ->times(30)
+            ->create();
     }
 }
