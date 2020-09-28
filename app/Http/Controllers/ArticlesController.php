@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Article;
+use App\Http\Resources\Article as ArticleResources;
+
 class ArticlesController extends Controller
 {
     /**
@@ -14,7 +17,13 @@ class ArticlesController extends Controller
     public function index()
     {
         //
-        return 'test';
+        //return 'test';
+
+        $articles = Article::paginate(5);
+        return ArticleResources::collection($articles)->additional(['meta' => [
+            'version' => '1.0.0',
+            'API_base_url' => url('/')
+        ]]);
     }
 
     /**
